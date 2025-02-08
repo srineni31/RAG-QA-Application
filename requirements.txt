@@ -1,0 +1,12 @@
+langchain
+faiss-cpu
+sentence-transformers
+pypdf
+fastapi
+uvicorn
+python-multipart
+boto3
+python-dotenv
+streamlit
+flask
+openai
