@@ -1,0 +1,57 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: RAG QA System using AWS Bedrock
+
+Resources:
+  RagQAFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: package/
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.9
+      Timeout: 300
+      MemorySize: 256
+      Environment:
+        Variables:
+          S3_BUCKET: your_bucket_name
+      Policies:
+        - S3CrudPolicy:
+            BucketName: your_bucket_name
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - bedrock:InvokeModel
+                - bedrock:InvokeModelWithResponseStream
+              Resource:
+                - "arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-3-sonnet-20240229-v1:0"
+            - Effect: Allow
+              Action:
+                - bedrock:ListFoundationModels
+                - bedrock:GetFoundationModel
+              Resource: "*"
+
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /qa
+            Method: post
+            RestApiId: !Ref ServerlessRestApi
+
+  ServerlessRestApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      Cors:
+        AllowMethods: "'POST,OPTIONS'"
+        AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+        AllowOrigin: "'*'"
+
+Outputs:
+  WebEndpoint:
+    Description: API Gateway endpoint URL
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/qa"
+  S3BucketName:
+    Description: Name of the S3 bucket
+    Value: your_bucket_name

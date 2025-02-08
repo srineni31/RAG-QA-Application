@@ -1,0 +1,20 @@
+# Environment variables and credentials
+.env
+.env.*
+aws_credentials.sh
+**/credentials/
+**/.aws/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Build and package files
+**/package/
+**/lambda.zip
+**/build/
+**/dist/
+
+# Local development
+local_settings.py
