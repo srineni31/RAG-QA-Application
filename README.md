@@ -5,7 +5,7 @@ A Retrieval-Augmented Generation (RAG) Question-Answering system that leverages 
 ## Technology Stack
 
 ### AWS Services
-- **AWS Bedrock Claude 3 Sonnet** - For text generation
+- **AWS Bedrock Claude 3.5 Sonnet** - For text generation
 - **AWS Lambda** - For serverless compute
 - **API Gateway** - For REST API endpoints
 - **S3** - For storing document indexes
@@ -39,5 +39,6 @@ A Retrieval-Augmented Generation (RAG) Question-Answering system that leverages 
 - Context-aware answers
 - Easy deployment with CloudFormation
 - Scalable and cost-effective
+
 
 
