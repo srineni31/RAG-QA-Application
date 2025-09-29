@@ -1,4 +1,4 @@
-# RAG QA System with AWS Bedrock
+# RAG QA System Flagship project
 
 A Retrieval-Augmented Generation (RAG) Question-Answering system that leverages AWS services for efficient document retrieval and answer generation.
 
@@ -39,6 +39,7 @@ A Retrieval-Augmented Generation (RAG) Question-Answering system that leverages 
 - Context-aware answers
 - Easy deployment with CloudFormation
 - Scalable and cost-effective
+
 
 
 
